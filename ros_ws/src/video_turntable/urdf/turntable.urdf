@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot name="turntable">
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <material name="red">
+    <color rgba="0.8 0 0 1"/>
+  </material>
+
+  <link name="table">
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.145"/>
+      </geometry>
+      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.002"/>
+    </visual>
+  </link>
+
+  <link name="post">
+    <visual>
+      <geometry>
+        <cylinder length="0.060" radius="0.036"/>
+      </geometry>
+      <material name="red"/>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+    </visual>
+  </link>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.002" radius="0.080"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_post" type="fixed">
+    <parent link="base_link"/>
+    <child link="post"/>
+    <origin xyz="0 0 0.001"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="post_to_table" type="continuous">
+    <parent link="post"/>
+    <child link="table"/>
+    <origin xyz="0 0 0.060"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+</robot>
